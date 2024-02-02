@@ -1,0 +1,40 @@
+Remove every k'th node
+Given a singly linked list, your task is to remove every kth node from the linked list.
+
+Input:
+The first line of input contains number of test cases T. Then T test cases follow. Every test case contains 3 lines. First line of every test case contains an integer N denoting the size of the linked list . The second line contains N space separated values of the linked list. The third line contains an integer K.
+
+Output:
+Output for each test case will be space separated values of the nodes of the new transformed linked list.
+
+User Task:
+The task is to complete the function deleteK() which should delete every kth nodes from the linked list.
+
+class GfG
+{
+    /*You are required to complete this method*/
+    
+    Node delete(Node head, int k)
+    {
+        
+        Node current = head;
+        int i=1;
+        if(i==k)
+        {
+            return null;
+        }
+        while(current !=null && current.next!=null)
+        {
+            if(i+1==k)
+            {
+                i=0;
+                current.next = current.next.next;
+            }
+            i++;
+            current = current.next;
+        }
+        
+        return head;
+	    
+    }
+}
