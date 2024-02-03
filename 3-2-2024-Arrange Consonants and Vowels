@@ -1,0 +1,65 @@
+Arrange Consonants and Vowels
+
+Given a singly linked list of size N containing only English Alphabets. Your task is to complete the function arrangeC&V(), that arranges the consonants and vowel nodes of the list it in such a way that all the vowels nodes come before the consonants while maintaining the order of their arrival.
+
+Input:
+The function takes a single argument as input, the reference pointer to the head of the linked list. There will be T test cases and for each test case the function will be called separately.
+
+Output:
+For each test case output a single line containing space separated elements of the list.
+
+class Solution {
+    
+    public Node arrangeCV(Node head)
+    {
+       Node current = head;
+       ArrayList<Character> vowels = new ArrayList<Character>();
+       ArrayList<Character> consonants = new ArrayList<Character>();
+       while(current != null)
+       {
+           switch(current.data)
+           {
+               case 'a': vowels.add(current.data);break;
+               case 'e': vowels.add(current.data);break;
+               case 'i': vowels.add(current.data);break;
+               case 'o': vowels.add(current.data);break;
+               case 'u': vowels.add(current.data);break;
+               default: consonants.add(current.data);
+           }
+           current = current.next;
+       }
+       
+       vowels.addAll(consonants);
+       Node newhead = null;
+       Node tail = null;
+       for(char ch: vowels)
+       {
+           Node newnode = new Node(ch);
+           if(newhead == null)
+           {
+               newhead = newnode;
+               tail = newnode;
+           }
+           else{
+               tail.next = newnode;
+               tail = newnode;
+           }
+       }
+       
+    //     for(char ch: consonants)
+    //   {
+    //       Node newnode = new Node(ch);
+    //       if(newhead == null)
+    //       {
+    //           newhead = newnode;
+    //           tail = newnode;
+    //       }
+    //       else{
+    //           tail.next = newnode;
+    //           tail = newnode;
+    //       }
+    //   }
+      return newhead;
+        
+    }
+}
