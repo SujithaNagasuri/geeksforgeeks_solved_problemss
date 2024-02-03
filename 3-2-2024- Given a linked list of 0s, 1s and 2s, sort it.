@@ -1,0 +1,70 @@
+Given a linked list of 0s, 1s and 2s, sort it.
+
+Given a linked list of N nodes where nodes can contain values 0s, 1s, and 2s only. The task is to segregate 0s, 
+1s, and 2s linked list such that all zeros segregate to head side, 2s at the end of the linked list, and 1s in the mid of 0s and 2s.
+
+
+class Solution
+{
+    //Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head)
+    {
+        // add your code here
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        Node current = head;
+        while(current!= null)
+        {
+            arr.add(current.data);
+            current = current.next;
+        }
+        Collections.sort(arr);
+        
+        Node newhead = null;
+        Node newtail = null;
+        for(int i:arr)
+        {
+            Node newnode = new Node(i);
+            if(newhead == null)
+            {
+                newhead = newnode;
+                newtail = newnode;
+            }
+            else{
+                newtail.next  = newnode;
+                newtail = newnode;
+            }
+        }
+        
+        return newhead;
+    }
+}
+
+
+second code using sorting algorithm
+class Solution
+{
+    //Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head)
+    {
+        // add your code here
+       Node current = head;
+       Node next = null;
+       while(current != null)
+       {
+           next = current.next;
+           while(next != null){
+               if(current.data > next.data)
+               {
+                   int temp = current.data;
+                   current.data = next.data;
+                   next.data = temp;
+               }
+               next = next.next;
+           }
+           current = current.next;
+       }
+       
+        
+        return head;
+    }
+}
