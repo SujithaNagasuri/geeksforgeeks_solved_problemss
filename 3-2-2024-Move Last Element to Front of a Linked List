@@ -1,0 +1,25 @@
+Move Last Element to Front of a Linked List
+You are given the head of a Linked List. You have to move the last element to the front of the Linked List and return the list.
+
+class Solution {
+    public static Node moveToFront(Node head) 
+    {
+        Node prev = null;
+        Node current = head;
+        
+        if(head.next == null)
+        {
+            return head;
+        }
+        while(current != null && current.next != null)
+        {
+            prev = current;
+            current = current.next;
+        }
+        prev.next = null;
+        current.next = head;
+        head = current;
+        return head;
+        // code here
+    }
+}
