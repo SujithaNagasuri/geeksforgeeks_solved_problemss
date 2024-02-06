@@ -1,0 +1,24 @@
+Decimal Equivalent of Binary Linked List
+
+Given a singly linked list of length n. The link list represents a binary number, ie- it contains only 0s and 1s. Find its decimal equivalent.
+The significance of the bits decreases with the increasing index in the linked list.
+An empty linked list is considered to represent the decimal value 0. 
+
+Since the answer can be very large, answer modulo 109+7 should be printed.
+
+
+class Solution
+{
+   long DecimalValue(Node head)
+   {
+       Node current = head;
+       long num = 0;
+       while(current != null)
+       {
+           num = (num*2+current.data)%1000000007;
+           current = current.next;
+       }
+       
+       return num;
+   }
+}
