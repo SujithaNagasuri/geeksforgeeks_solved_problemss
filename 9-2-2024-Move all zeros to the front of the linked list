@@ -1,0 +1,49 @@
+Move all zeros to the front of the linked list
+Given a linked list, the task is to move all 0s to the front of the linked list. The order of all another element except 0 should be same after rearrangement.
+Example 1:
+
+Input:  0 -> 4 -> 0 -> 5 -> 0
+Output: 0 -> 0 -> 0 -> 4 -> 5
+Explanation: After moving all 0s of the given
+list to the front, the list is:
+0 -> 0 -> 0 -> 4 -> 5
+
+
+class GfG{
+    public Node moveZeroes(Node head)
+    {
+        //Your Code here.
+        ArrayList<Integer> zero = new ArrayList<Integer>();
+        ArrayList<Integer> nzero = new ArrayList<Integer>();
+        Node current = head;
+        while(current != null)
+        {
+            if(current.data == 0)
+            {
+                zero.add(current.data);
+            }
+            else{
+                nzero.add(current.data);
+            }
+            current = current.next;
+        }
+        zero.addAll(nzero);
+    Node newhead= null,tail = null;
+    for(int i:zero)
+    {
+        Node newnode = new Node(i);
+        if(newhead == null)
+        {
+            newhead = newnode;
+            tail = newnode;
+        }
+        else{
+            tail.next = newnode;
+            tail = newnode;
+        }
+        
+    }
+    return newhead;
+    }
+    
+}
