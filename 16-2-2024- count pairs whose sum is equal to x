@@ -1,0 +1,37 @@
+Given two linked lists with distinct elements, your task is to complete the function countPairs(), which returns the count of all pairs from both lists whose sum is equal to the given value x.
+
+Note: The 2 numbers of a pair should be parts of different lists.
+
+Example 1:
+
+Input:
+L1 = 1->2->3->4->5->6
+L2 = 11->12->13
+x = 15
+Output: 3
+Explanation: There are 3 pairs that add up to 15 : (4,11) , (3,12) and (2,13)
+
+class Solution {
+
+    public static int countPairs(LinkedList<Integer> head1, LinkedList<Integer> head2,int x) 
+    {
+        // add your code here0
+        HashSet<Integer> arr = new HashSet<>();
+         int count = 0;
+        for(int i: head2)
+        {
+            arr.add(i);
+        }
+        for(int i:head1)
+        {
+            int v = x-i;
+            if(arr.contains(v))
+            {
+                count++;
+            }
+        }
+       
+        
+        return count;
+    }
+}
