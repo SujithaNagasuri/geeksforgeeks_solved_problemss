@@ -1,0 +1,139 @@
+Example 1:
+
+Input:
+n = 2
+num1 = 45 (4->5->null)
+m = 3
+num2 = 345 (3->4->5->null)
+Output: 
+3->9->0->null  
+Explanation: 
+For the given two linked list (4 5) and (3 4 5), after adding the two linked list resultant linked list will be (3 9 0).
+
+class Solution {
+    // Function to add two numbers represented by linked list.
+    
+     static Node reverse(Node head){
+         
+            Node current = head,prev= null,next;
+            if(head == null || head.next == null)
+            {
+                return head;
+            }
+            else {
+                while(current != null)
+                {
+                    next = current.next;
+                    current.next = prev;
+                    prev = current;
+                    current = next;
+                }
+            }
+            return prev;
+    }
+        
+    static Node addTwoLists(Node num1, Node num2) {
+        // code here
+        // return head of sum list
+       num1 = reverse(num1);
+       num2 = reverse(num2);
+
+       int carry = 0;
+       Node head =null,tail=null;
+       while(num1 != null || num2!=null || carry != 0)
+       {
+           
+           int digit1 = num1 != null ? num1.data: 0;
+           int digit2 = num2 != null ? num2.data: 0;
+           
+           int sum = digit1+digit2+carry;
+           int num = sum%10;
+           carry = sum/10;
+           
+           Node newnode = new Node(num);
+           
+           if(head == null)
+           {
+               head = newnode;
+               tail = newnode;
+           }
+           else{
+               tail.next = newnode;
+               tail = newnode;
+           }
+           
+           num1 = num1 != null ? num1.next:null;
+           num2 = num2 !=null ? num2.next : null;
+           
+       }
+        
+        Node Dummynode = reverse(head);
+        while(Dummynode.data == 0)
+        {
+             if(Dummynode.next==null)
+              break;
+            Dummynode=Dummynode.next;  
+        }
+        
+        
+    }
+}
+
+//{ Driver Code Starts.
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+
+class GfG {
+
+    static void printList(Node n) {
+        while (n != null) {
+            System.out.print(n.data + " ");
+            n = n.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+
+        while (T-- > 0) {
+
+            int n = sc.nextInt();
+            int val = sc.nextInt();
+
+            Node num1 = new Node(val);
+            Node tail = num1;
+            for (int i = 0; i < n - 1; i++) {
+                val = sc.nextInt();
+                tail.next = new Node(val);
+                tail = tail.next;
+            }
+
+            int m = sc.nextInt();
+            val = sc.nextInt();
+
+            Node num2 = new Node(val);
+            tail = num2;
+            for (int i = 0; i < m - 1; i++) {
+                val = sc.nextInt();
+                tail.next = new Node(val);
+                tail = tail.next;
+            }
+
+            Solution g = new Solution();
+            Node res = g.addTwoLists(num1, num2);
+            printList(res);
+        }
+    }
+}
+
+// } Driver Code Ends
